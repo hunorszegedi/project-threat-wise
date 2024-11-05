@@ -7,6 +7,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import NetworkCheckIcon from '@mui/icons-material/NetworkCheck';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import ReportIcon from '@mui/icons-material/Report';
+import ListAltIcon from '@mui/icons-material/ListAlt';
 
 const Sidebar = () => {
   return (
@@ -49,6 +50,12 @@ const Sidebar = () => {
           <Link to="/reports">
             <ReportIcon className="icon" />
             <span>Reports</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/logs">
+            <ListAltIcon className="icon" />
+            <span>Logs</span>
           </Link>
         </li>
       </ul>
