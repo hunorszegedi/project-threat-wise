@@ -1,32 +1,61 @@
 .sidebar {
-    width: 200px;
-    height: 100vh;
-    background-color: #282c34;
-    color: white;
-    padding-top: 20px;
-    position: fixed;
-  }
-  
-  .sidebar h2 {
-    text-align: center;
-  }
-  
-  .sidebar ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .sidebar ul li {
-    padding: 10px;
-    text-align: center;
-  }
-  
-  .sidebar ul li a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  .sidebar ul li a:hover {
-    color: #61dafb;
-  }
+  width: 240px;
+  height: 100vh;
+  background-color: #1c2b4b;
+  color: white;
+  padding-top: 20px;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  margin-bottom: 20px;
+}
+
+.logo h2 {
+  color: #f0f0f0;
+  font-size: 18px;
+  text-align: center;
+}
+
+.sidebar-menu {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+}
+
+.sidebar-menu li {
+  width: 100%;
+  text-align: left;
+}
+
+.sidebar-menu li a {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  color: #c2c7d0;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-menu li a:hover {
+  background-color: #304066;
+  color: white;
+}
+
+.icon {
+  margin-right: 10px;
+  color: #c2c7d0;
+}
+
+.sidebar-menu li a.active {
+  background-color: #3a4a6b;
+  color: #fff;
+}
+
+.sidebar-menu li a.active .icon {
+  color: #61dafb;
+}
   
