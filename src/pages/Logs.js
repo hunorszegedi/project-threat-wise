@@ -14,12 +14,13 @@ const Logs = () => {
     topFrequency: false,
    });
 
-  useEffect(() => {
+   useEffect(() => {
     const fetchLogs = async () => {
       try {
-        const response = await axios.get('/api/logs');
-        console.log('Fetched logs:', response.data); 
+        const response = await axios.get('http://localhost:5000/api/logs');
         setLogs(response.data);
+        setFilteredLogs(response.data);
+        console.log('Lekért logok:', response.data); 
       } catch (error) {
         console.error('Error fetching logs:', error);
       }
@@ -46,11 +47,9 @@ const Logs = () => {
     }
 
     if (filter.geolocation) {
-      // Ehhez szuksegem lenne egy geolocation API-ra, amit az IP cimekhez lehet rendelni.
-      // Ezt helyben peldakent kezelhetjuk az orszag nevenek feltetelezese alapjan.
       filtered = filtered.filter(log => log.geolocation && log.geolocation.includes(filter.geolocation));
     }
-
+    
     if (filter.processId) {
       filtered = filtered.filter(log => log.processId === filter.processId);
     }
@@ -143,6 +142,7 @@ const Logs = () => {
             <th>Process ID</th>
             <th>Host</th>
             <th>IP Address</th>
+            <th>Geolocation</th>
             <th>Message</th>
           </tr>
         </thead>
@@ -153,6 +153,7 @@ const Logs = () => {
               <td>{log.processId}</td>
               <td>{log.host}</td>
               <td>{log.ip}</td>
+              <td>{log.geolocation}</td>
               <td>{log.message}</td>
             </tr>
           ))}
