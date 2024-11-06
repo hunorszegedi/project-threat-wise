@@ -4,6 +4,7 @@ import './Logs.css';
 
 const Logs = () => {
   const [displayLogs, setDisplayLogs] = useState([]);
+  const [suspiciousIps, setSuspiciousIps] = useState(new Set());
   const [feedback, setFeedback] = useState('');
   const [offset, setOffset] = useState(0);
   const [logCache, setLogCache] = useState({});
@@ -25,6 +26,15 @@ const Logs = () => {
     { key: "SASL LOGIN authentication failed: Invalid authentication mechanism", label: "SASL LOGIN auth failed: Invalid mechanism", color: "red" },
     { key: "SASL PLAIN authentication failed: Invalid authentication mechanism", label: "SASL PLAIN auth failed: Invalid mechanism", color: "red" }
   ];
+
+  const fetchSuspiciousIps = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/api/suspicious_ips');
+      setSuspiciousIps(new Set(response.data));
+    } catch (error) {
+      console.error('Error fetching suspicious IPs:', error);
+    }
+  };
 
   const fetchLogs = async () => {
     try {
@@ -53,6 +63,8 @@ const Logs = () => {
           log.status = 'new';
         }
 
+        log.suspicious = suspiciousIps.has(log.ip);
+
         return log;
       });
 
@@ -67,11 +79,12 @@ const Logs = () => {
   };
 
   useEffect(() => {
+    fetchSuspiciousIps();
     fetchLogs();
 
     const interval = setInterval(() => {
       fetchLogs();
-    }, 500); 
+    }, 100); 
 
     return () => clearInterval(interval);
   }, []);
@@ -119,7 +132,34 @@ const Logs = () => {
 
   return (
     <div>
-      <h1>Logs</h1>
+     
+    <div className="legend-container">
+      <h3>Legend:</h3>
+      <div className="legend-item">
+        <div className="legend-color new-log"></div>
+        <span>New Log - Initial occurrence of the IP</span>
+      </div>
+      <div className="legend-item">
+        <div className="legend-color repeated-log"></div>
+        <span>Repeated Log - IP occurred multiple times</span>
+      </div>
+      <div className="legend-item">
+        <div className="legend-color frequent-log"></div>
+        <span>Frequent Log - IP occurred at least 5 times</span>
+      </div>
+      <div className="legend-item">
+        <div className="legend-color very-frequent-log"></div>
+        <span>Very Frequent Log - IP occurred at least 10 times</span>
+      </div>
+      <div className="legend-item">
+        <div className="legend-color severe-log"></div>
+        <span>Severe Log - IP occurred at least 50 times</span>
+      </div>
+      <div className="legend-item">
+        <div className="legend-color critical-log"></div>
+        <span>Critical Log - IP occurred at least 100 times</span>
+      </div>
+    </div>
 
       <div className="filter-container">
         <label>
@@ -203,6 +243,7 @@ const Logs = () => {
             <th>IP Address</th>
             <th>Geolocation</th>
             <th>Message</th>
+            <th>Suspicious</th>
           </tr>
         </thead>
         <tbody>
@@ -221,6 +262,9 @@ const Logs = () => {
               <td>{log.ip}</td>
               <td>{log.geolocation}</td>
               <td>{log.message}</td>
+              <td className={log.suspicious ? 'suspicious-yes' : 'suspicious-no'}>
+                {log.suspicious ? 'Yes' : 'No'}
+              </td>
             </tr>
           ))}
         </tbody>

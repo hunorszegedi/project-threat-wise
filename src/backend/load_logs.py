@@ -49,4 +49,4 @@ def load_logs_to_elasticsearch(log_file_path, index_name="logs", rate_limit=1):
             time.sleep(rate_limit)
 
 # betenni egy forba sasli
-load_logs_to_elasticsearch('../../logs/sasl1.log', rate_limit=1) 
+load_logs_to_elasticsearch('../../logs/sasl1proba.log', rate_limit=1) 

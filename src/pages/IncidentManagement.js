@@ -103,13 +103,13 @@ const IncidentManagement = () => {
         </thead>
         <tbody>
           {filteredLogs.map((log, index) => (
-            <tr key={index} className={log.status}>
+            <tr key={index}>
               <td>{log.timestamp}</td>
               <td>{log.process_id}</td>
               <td>{log.host}</td>
               <td>{log.ip}</td>
               <td>{log.message}</td>
-              <td>{log.status}</td>
+              <td className={log.status}>{log.status}</td>
               <td>
                 <button onClick={() => handleAction(log.ip, 'block')}>Block IP</button>
                 <button onClick={() => handleAction(log.ip, 'alert')}>Alert</button>

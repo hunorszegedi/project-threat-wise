@@ -110,3 +110,32 @@
     color: #006400;
   }
   
+  .legend-container {
+    margin-bottom: 20px;
+  }
+  
+  .legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .legend-color {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+
+  .dangerous-log {
+    background-color: #000000;
+    color: #ffffff;
+  }
+  
+  .suspicious-yes {
+    background-color: #ff0000; 
+  }
+  
+  .suspicious-no {
+    background-color: #00ff00;
+  }
+  
