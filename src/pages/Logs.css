@@ -77,29 +77,36 @@
   }
     
   .new-log {
-    background-color: #00ff00; 
+    background-color: #008000;
+    color: #ffffff;
   }
   
   .repeated-log {
-    background-color: #ffff00; 
+    background-color: #cccc00;
+    color: #000000;
   }
   
   .frequent-log {
-    background-color: #ff8c00; 
+    background-color: #e67e22;
+    color: #ffffff;
   }
   
   .very-frequent-log {
-    background-color: #ff4500; 
+    background-color: #c84f1b;
+    color: #ffffff;
   }
   
   .severe-log {
-    background-color: #ff0000; 
+    background-color: #e92626;
+    color: #ffffff;
   }
   
   .critical-log {
-    background-color: #800080;
+    background-color: #4b0082;
+    color: #ffffff;
   }
-    
+  
   .feedback {
-    color: #28a745; 
+    color: #006400;
   }
+  

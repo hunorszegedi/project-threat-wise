@@ -17,7 +17,14 @@ const Logs = () => {
     geolocation: '',
     processId: '',
     topFrequency: false,
+    message: '',
   });
+
+  const messageOptions = [
+    { key: "SASL PLAIN authentication failed:", label: "SASL PLAIN authentication failed:", color: "red" },
+    { key: "SASL LOGIN authentication failed: Invalid authentication mechanism", label: "SASL LOGIN auth failed: Invalid mechanism", color: "red" },
+    { key: "SASL PLAIN authentication failed: Invalid authentication mechanism", label: "SASL PLAIN auth failed: Invalid mechanism", color: "red" }
+  ];
 
   const fetchLogs = async () => {
     try {
@@ -51,7 +58,7 @@ const Logs = () => {
 
       setDisplayLogs(newLogs);
       setOffset(prevOffset => prevOffset + BATCH_SIZE);
-      setFeedback(`${newLogs.length} új log betöltve.`);
+      setFeedback(`${newLogs.length} new log information every 0.5s.`);
       setLogCache({ ...logCache });
     } catch (error) {
       console.error('Error fetching logs:', error);
@@ -64,7 +71,7 @@ const Logs = () => {
 
     const interval = setInterval(() => {
       fetchLogs();
-    }, 1000); 
+    }, 500); 
 
     return () => clearInterval(interval);
   }, []);
@@ -72,6 +79,9 @@ const Logs = () => {
   const applyFilters = () => {
     let filtered = displayLogs;
 
+    if (filter.message) {
+      filtered = filtered.filter(log => log.message.includes(filter.message));
+    }
     if (filter.type) {
       filtered = filtered.filter(log => log.message.includes(filter.type));
     }
@@ -113,13 +123,18 @@ const Logs = () => {
 
       <div className="filter-container">
         <label>
-          Type:
-          <input
-            type="text"
-            value={filter.type}
-            onChange={(e) => setFilter({ ...filter, type: e.target.value })}
-            placeholder="Enter log type..."
-          />
+          Message Type:
+          <select
+            value={filter.message}
+            onChange={(e) => setFilter({ ...filter, message: e.target.value })}
+          >
+            <option value="">Select a message type...</option>
+            {messageOptions.map(option => (
+              <option key={option.key} value={option.key} style={{ color: option.color }}>
+                {option.label}
+              </option>
+            ))}
+          </select>
         </label>
         <label>
           IP Address:
