@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './Logs.css';
 
 const Logs = () => {
@@ -9,6 +10,7 @@ const Logs = () => {
   const [offset, setOffset] = useState(0);
   const [logCache, setLogCache] = useState({});
   const BATCH_SIZE = 5;
+  const navigate = useNavigate(); // Initialize navigate
 
   const [filter, setFilter] = useState({
     type: '',
@@ -130,8 +132,20 @@ const Logs = () => {
     applyFilters();
   }, [filter]);
 
+  const geoLocations = displayLogs
+    .filter(log => log.geolocation && log.geolocation.latitude && log.geolocation.longitude)
+    .map(log => ({
+      latitude: log.geolocation.latitude,
+      longitude: log.geolocation.longitude,
+    }));
+
+  const handleNavigateToMap = () => {
+    navigate('/geolocation-map', { state: { geoLocations } });
+  };
+
   return (
     <div>
+      <button onClick={handleNavigateToMap}>View Geolocation Map</button>
 
       <div className="legend-container">
         <h3>Legend:</h3>
@@ -254,11 +268,11 @@ const Logs = () => {
           {displayLogs.map((log, index) => (
             <tr key={index} className={
               log.status === 'critical' ? 'critical-log' :
-                log.status === 'severe' ? 'severe-log' :
-                  log.status === 'very-frequent' ? 'very-frequent-log' :
-                    log.status === 'frequent' ? 'frequent-log' :
-                      log.status === 'repeated' ? 'repeated-log' :
-                        'new-log'
+              log.status === 'severe' ? 'severe-log' :
+              log.status === 'very-frequent' ? 'very-frequent-log' :
+              log.status === 'frequent' ? 'frequent-log' :
+              log.status === 'repeated' ? 'repeated-log' :
+              'new-log'
             }>
               <td>{log.timestamp}</td>
               <td>{log.process_id}</td>

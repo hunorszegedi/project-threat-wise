@@ -5,6 +5,7 @@ import Page1 from './pages/Page1';
 import Page2 from './pages/Page2';
 import Logs from './pages/Logs';
 import IncidentManagement from './pages/IncidentManagement';
+import GeolocationMap from './pages/GeolocationMap'; 
 import './App.css';
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
             <Route path="/security-dashboard" element={<Page2 />} />
             <Route path="/logs" element={<Logs />} />
             <Route path="/incident-management" element={<IncidentManagement />} />
+            <Route path="/geolocation-map" element={<GeolocationMap/>} />
           </Routes>
         </div>
       </div>

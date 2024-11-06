@@ -9,6 +9,7 @@ import AssessmentIcon from '@mui/icons-material/Assessment';
 import ReportIcon from '@mui/icons-material/Report';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import WarningIcon from '@mui/icons-material/Warning';
+import MapIcon from '@mui/icons-material/Map';
 
 const Sidebar = () => {
   return (
@@ -63,6 +64,12 @@ const Sidebar = () => {
           <Link to="/incident-management">
             <WarningIcon className="icon" />
             <span>Incident Management</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/geolocation-map">
+            <MapIcon className="icon" />
+            <span>Geolocation Map</span>
           </Link>
         </li>
       </ul>
