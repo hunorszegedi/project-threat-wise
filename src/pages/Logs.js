@@ -50,15 +50,15 @@ const Logs = () => {
         }
 
         if (logCache[log.ip] >= 100) {
-          log.status = 'critical'; 
+          log.status = 'critical';
         } else if (logCache[log.ip] >= 50) {
-          log.status = 'severe'; 
+          log.status = 'severe';
         } else if (logCache[log.ip] >= 10) {
-          log.status = 'very-frequent'; 
+          log.status = 'very-frequent';
         } else if (logCache[log.ip] >= 5) {
-          log.status = 'frequent'; 
+          log.status = 'frequent';
         } else if (logCache[log.ip] > 1) {
-          log.status = 'repeated'; 
+          log.status = 'repeated';
         } else {
           log.status = 'new';
         }
@@ -84,7 +84,7 @@ const Logs = () => {
 
     const interval = setInterval(() => {
       fetchLogs();
-    }, 100); 
+    }, 100);
 
     return () => clearInterval(interval);
   }, []);
@@ -132,34 +132,34 @@ const Logs = () => {
 
   return (
     <div>
-     
-    <div className="legend-container">
-      <h3>Legend:</h3>
-      <div className="legend-item">
-        <div className="legend-color new-log"></div>
-        <span>New Log - Initial occurrence of the IP</span>
+
+      <div className="legend-container">
+        <h3>Legend:</h3>
+        <div className="legend-item">
+          <div className="legend-color new-log"></div>
+          <span>New Log - Initial occurrence of the IP</span>
+        </div>
+        <div className="legend-item">
+          <div className="legend-color repeated-log"></div>
+          <span>Repeated Log - IP occurred multiple times</span>
+        </div>
+        <div className="legend-item">
+          <div className="legend-color frequent-log"></div>
+          <span>Frequent Log - IP occurred at least 5 times</span>
+        </div>
+        <div className="legend-item">
+          <div className="legend-color very-frequent-log"></div>
+          <span>Very Frequent Log - IP occurred at least 10 times</span>
+        </div>
+        <div className="legend-item">
+          <div className="legend-color severe-log"></div>
+          <span>Severe Log - IP occurred at least 50 times</span>
+        </div>
+        <div className="legend-item">
+          <div className="legend-color critical-log"></div>
+          <span>Critical Log - IP occurred at least 100 times</span>
+        </div>
       </div>
-      <div className="legend-item">
-        <div className="legend-color repeated-log"></div>
-        <span>Repeated Log - IP occurred multiple times</span>
-      </div>
-      <div className="legend-item">
-        <div className="legend-color frequent-log"></div>
-        <span>Frequent Log - IP occurred at least 5 times</span>
-      </div>
-      <div className="legend-item">
-        <div className="legend-color very-frequent-log"></div>
-        <span>Very Frequent Log - IP occurred at least 10 times</span>
-      </div>
-      <div className="legend-item">
-        <div className="legend-color severe-log"></div>
-        <span>Severe Log - IP occurred at least 50 times</span>
-      </div>
-      <div className="legend-item">
-        <div className="legend-color critical-log"></div>
-        <span>Critical Log - IP occurred at least 100 times</span>
-      </div>
-    </div>
 
       <div className="filter-container">
         <label>
@@ -241,7 +241,11 @@ const Logs = () => {
             <th>Process ID</th>
             <th>Host</th>
             <th>IP Address</th>
-            <th>Geolocation</th>
+            <th>Country</th>
+            <th>Region</th>
+            <th>City</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
             <th>Message</th>
             <th>Suspicious</th>
           </tr>
@@ -250,17 +254,21 @@ const Logs = () => {
           {displayLogs.map((log, index) => (
             <tr key={index} className={
               log.status === 'critical' ? 'critical-log' :
-              log.status === 'severe' ? 'severe-log' :
-              log.status === 'very-frequent' ? 'very-frequent-log' :
-              log.status === 'frequent' ? 'frequent-log' :
-              log.status === 'repeated' ? 'repeated-log' :
-              'new-log'
+                log.status === 'severe' ? 'severe-log' :
+                  log.status === 'very-frequent' ? 'very-frequent-log' :
+                    log.status === 'frequent' ? 'frequent-log' :
+                      log.status === 'repeated' ? 'repeated-log' :
+                        'new-log'
             }>
               <td>{log.timestamp}</td>
               <td>{log.process_id}</td>
               <td>{log.host}</td>
               <td>{log.ip}</td>
-              <td>{log.geolocation}</td>
+              <td>{log.geolocation ? log.geolocation.country : 'Unknown'}</td>
+              <td>{log.geolocation ? log.geolocation.region : 'Unknown'}</td>
+              <td>{log.geolocation ? log.geolocation.city : 'Unknown'}</td>
+              <td>{log.geolocation ? log.geolocation.latitude : 'N/A'}</td>
+              <td>{log.geolocation ? log.geolocation.longitude : 'N/A'}</td>
               <td>{log.message}</td>
               <td className={log.suspicious ? 'suspicious-yes' : 'suspicious-no'}>
                 {log.suspicious ? 'Yes' : 'No'}

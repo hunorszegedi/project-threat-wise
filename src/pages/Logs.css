@@ -1,141 +1,141 @@
 .filter-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    background-color: #1e2a38;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
-    color: #ffffff;
-    margin-bottom: 20px;
-    font-family: Arial, sans-serif;
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-  
-  .filter-container label {
-    font-weight: bold;
-    color: #d1d5db;
-  }
-  
-  .filter-container input[type="text"] {
-    background-color: #2c3e50;
-    border: 1px solid #3b4a5a;
-    color: #ffffff;
-    padding: 10px;
-    border-radius: 4px;
-    width: 100%;
-    font-size: 1rem;
-    margin-bottom: 10px;
-  }
-  
-  .filter-container input[type="checkbox"] {
-    transform: scale(1.2);
-    margin-right: 8px;
-  }
-  
-  .filter-container button {
-    grid-column: 1 / -1;
-    background-color: #1f78ff;
-    color: #ffffff;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 4px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .filter-container button:hover {
-    background-color: #1a5bb5;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #1e2a38;
-    color: #ffffff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
-  }
-  
-  table th, table td {
-    padding: 12px;
-    border-bottom: 1px solid #333;
-    text-align: left;
-  }
-  
-  table th {
-    background-color: #243447;
-    font-weight: bold;
-  }
-  
-  table tbody tr:hover {
-    opacity: 0.8;
-  }
-    
-  .new-log {
-    background-color: #008000;
-    color: #ffffff;
-  }
-  
-  .repeated-log {
-    background-color: #cccc00;
-    color: #000000;
-  }
-  
-  .frequent-log {
-    background-color: #e67e22;
-    color: #ffffff;
-  }
-  
-  .very-frequent-log {
-    background-color: #c84f1b;
-    color: #ffffff;
-  }
-  
-  .severe-log {
-    background-color: #e92626;
-    color: #ffffff;
-  }
-  
-  .critical-log {
-    background-color: #4b0082;
-    color: #ffffff;
-  }
-  
-  .feedback {
-    color: #006400;
-  }
-  
-  .legend-container {
-    margin-bottom: 20px;
-  }
-  
-  .legend-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-  }
-  
-  .legend-color {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-  }
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  background-color: #1e2a38;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+  color: #ffffff;
+  margin-bottom: 20px;
+  font-family: Arial, sans-serif;
+  max-width: 100%;
+  box-sizing: border-box;
+}
 
-  .dangerous-log {
-    background-color: #000000;
-    color: #ffffff;
-  }
-  
-  .suspicious-yes {
-    background-color: #ff0000; 
-  }
-  
-  .suspicious-no {
-    background-color: #00ff00;
-  }
-  
+.filter-container label {
+  font-weight: bold;
+  color: #d1d5db;
+}
+
+.filter-container input[type="text"] {
+  background-color: #2c3e50;
+  border: 1px solid #3b4a5a;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 4px;
+  width: 100%;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.filter-container input[type="checkbox"] {
+  transform: scale(1.2);
+  margin-right: 8px;
+}
+
+.filter-container button {
+  grid-column: 1 / -1;
+  background-color: #1f78ff;
+  color: #ffffff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.filter-container button:hover {
+  background-color: #1a5bb5;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #1e2a38;
+  color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+table th,
+table td {
+  padding: 12px;
+  border-bottom: 1px solid #333;
+  text-align: left;
+}
+
+table th {
+  background-color: #243447;
+  font-weight: bold;
+}
+
+table tbody tr:hover {
+  opacity: 0.8;
+}
+
+.new-log {
+  background-color: #008000;
+  color: #ffffff;
+}
+
+.repeated-log {
+  background-color: #cccc00;
+  color: #000000;
+}
+
+.frequent-log {
+  background-color: #e67e22;
+  color: #ffffff;
+}
+
+.very-frequent-log {
+  background-color: #c84f1b;
+  color: #ffffff;
+}
+
+.severe-log {
+  background-color: #e92626;
+  color: #ffffff;
+}
+
+.critical-log {
+  background-color: #4b0082;
+  color: #ffffff;
+}
+
+.feedback {
+  color: #006400;
+}
+
+.legend-container {
+  margin-bottom: 20px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.dangerous-log {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.suspicious-yes {
+  background-color: #ff0000;
+}
+
+.suspicious-no {
+  background-color: #00ff00;
+}
