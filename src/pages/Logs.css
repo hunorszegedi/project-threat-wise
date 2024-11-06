@@ -1,23 +1,105 @@
-table {
+.filter-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    background-color: #1e2a38;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .filter-container label {
+    font-weight: bold;
+    color: #d1d5db;
+  }
+  
+  .filter-container input[type="text"] {
+    background-color: #2c3e50;
+    border: 1px solid #3b4a5a;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  
+  .filter-container input[type="checkbox"] {
+    transform: scale(1.2);
+    margin-right: 8px;
+  }
+  
+  .filter-container button {
+    grid-column: 1 / -1;
+    background-color: #1f78ff;
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .filter-container button:hover {
+    background-color: #1a5bb5;
+  }
+  
+  table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    background-color: #1e2a38;
+    color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
   }
   
-  table, th, td {
-    border: 1px solid #ddd;
-  }
-  
-  th, td {
-    padding: 8px;
+  table th, table td {
+    padding: 12px;
+    border-bottom: 1px solid #333;
     text-align: left;
   }
   
-  th {
-    background-color: #f2f2f2;
+  table th {
+    background-color: #243447;
+    font-weight: bold;
   }
   
-  tr:nth-child(even) {
-    background-color: #f9f9f9;
+  table tbody tr:hover {
+    opacity: 0.8;
+  }
+    
+  .new-log {
+    background-color: #00ff00; 
   }
   
+  .repeated-log {
+    background-color: #ffff00; 
+  }
+  
+  .frequent-log {
+    background-color: #ff8c00; 
+  }
+  
+  .very-frequent-log {
+    background-color: #ff4500; 
+  }
+  
+  .severe-log {
+    background-color: #ff0000; 
+  }
+  
+  .critical-log {
+    background-color: #800080;
+  }
+    
+  .feedback {
+    color: #28a745; 
+  }
