@@ -4,6 +4,8 @@ from elasticsearch import Elasticsearch
 import threading
 import time
 import requests
+from geoip2.database import Reader
+import geoip2.errors
 
 app = Flask(__name__)
 CORS(app)
@@ -14,6 +16,9 @@ all_logs = []
 batch_size = 10
 offset = 0
 lock = threading.Lock()
+
+geo_db_path = 'C:/Users/Vivobook/Downloads/GeoLite2-City_20241105/GeoLite2-City_20241105/GeoLite2-City.mmdb'
+reader = Reader(geo_db_path)
 
 def download_firehol_ip_list():
     url = "https://raw.githubusercontent.com/firehol/blocklist-ipsets/master/firehol_level1.netset"
@@ -58,6 +63,24 @@ class LogUpdaterThread(threading.Thread):
                     else:
                         log['suspicious'] = False
 
+                    try:
+                        response = reader.city(ip)
+                        log['geolocation'] = {
+                            'country': response.country.name,
+                            'region': response.subdivisions.most_specific.name,
+                            'city': response.city.name,
+                            'latitude': response.location.latitude,
+                            'longitude': response.location.longitude
+                        }
+                    except geoip2.errors.AddressNotFoundError:
+                        log['geolocation'] = {
+                            'country': 'Unknown',
+                            'region': 'Unknown',
+                            'city': 'Unknown',
+                            'latitude': None,
+                            'longitude': None
+                        }
+
                 with lock:
                     all_logs = logs
                     offset += batch_size
@@ -80,3 +103,4 @@ def get_suspicious_ips():
 
 if __name__ == '__main__':
     app.run(port=5000)
+reader.close()
