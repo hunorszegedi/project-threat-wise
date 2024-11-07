@@ -1,3 +1,4 @@
+import json
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from elasticsearch import Elasticsearch
@@ -101,6 +102,17 @@ def get_logs():
 def get_suspicious_ips():
     return jsonify(list(suspicious_ips))
 
+@app.route('/api/ip-data', methods=['GET'])
+def get_ip_data():
+    try:
+        with open('ip_data.json', 'r') as file:
+            data = json.load(file)
+        return jsonify(data)
+    except FileNotFoundError:
+        return jsonify([])  # Ha a fájl nem létezik, üres listát adunk vissza
+    except Exception as e:
+        return jsonify({"error": f"Hiba történt: {str(e)}"})
+    
 if __name__ == '__main__':
     app.run(port=5000)
 reader.close()

@@ -72,6 +72,12 @@ const Sidebar = () => {
             <span>Geolocation Map</span>
           </Link>
         </li>
+        <li>
+            <Link to="/ipinfo-map">
+            <MapIcon className="icon" />
+            <span>IPInfo Map</span>
+            </Link>
+        </li>;    
       </ul>
     </div>
   );
