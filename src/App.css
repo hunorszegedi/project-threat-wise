@@ -1,9 +1,7 @@
-.App {
-  display: flex;
-}
-
-.content {
-  margin-left: 240px; 
+.main-content {
+  background-color: #1a1a2e;
+  color: #ffffff;
   padding: 20px;
-  width: calc(100% - 240px);
+  margin-left: 250px;
+  min-height: 100vh;
 }

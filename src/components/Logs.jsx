@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import './Logs.css';
+import '../styles/Logs.css';
 
 const Logs = () => {
   const [displayLogs, setDisplayLogs] = useState([]);
